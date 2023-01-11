@@ -20,6 +20,5 @@ add_executable(bayan
 target_include_directories(bayan
   PRIVATE "${CMAKE_BINARY_DIR}")
 
-target_link_libraries(bayan
-  PRIVATE Boost::boost
-)
+target_include_directories(bayan
+  PRIVATE "${Boost_INCLUDE_DIR}")
