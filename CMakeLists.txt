@@ -21,4 +21,7 @@ target_include_directories(bayan
   PRIVATE "${CMAKE_BINARY_DIR}")
 
 target_include_directories(bayan
-  PRIVATE "${Boost_INCLUDE_DIR}")
+  PRIVATE ${Boost_INCLUDE_DIR})
+
+target_link_libraries(bayan
+  PRIVATE ${Boost_LIBRARY_DIR})
