@@ -24,4 +24,4 @@ target_include_directories(bayan
   PRIVATE ${Boost_INCLUDE_DIR})
 
 target_link_libraries(bayan
-  PRIVATE ${Boost_LIBRARY_DIR})
+  ${Boost_LIBRARIES})
