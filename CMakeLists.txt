@@ -7,7 +7,11 @@ project(bayan VERSION ${PROJECT_VESRION})
 
 configure_file(version.h.in version.h)
 
-find_package(Boost)
+find_package(Boost
+  COMPONENTS
+  filesystem
+  regex
+  program_options)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -24,4 +28,7 @@ target_include_directories(bayan
   PRIVATE ${Boost_INCLUDE_DIR})
 
 target_link_libraries(bayan
-  ${Boost_LIBRARIES})
+  PRIVATE
+  Boost::filesystem
+  Boost::regex
+  Boost::program_options)
