@@ -7,14 +7,19 @@ project(bayan VERSION ${PROJECT_VESRION})
 
 configure_file(version.h.in version.h)
 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../bin)
+
 find_package(Boost
   COMPONENTS
   filesystem
   regex
   program_options)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -Wall -pedantic")
+set_target_properties(${PROJECT_NAME} PROPERTIES
+                CXX_STANDARD 17
+                CXX_STANDARD_REQUIRED ON
+                COMPILE_OPTIONS "-O0;-Wall;")
 
 add_executable(bayan
   FileScanner.h
@@ -32,6 +37,8 @@ target_link_libraries(bayan
   Boost::filesystem
   Boost::regex
   Boost::program_options)
+  
+install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
 
