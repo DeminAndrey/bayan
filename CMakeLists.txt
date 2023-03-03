@@ -35,6 +35,16 @@ target_link_libraries(bayan
   Boost::regex
   Boost::program_options)
   
+if(MSVC)
+    target_compile_options(bayan PRIVATE
+        /W4
+    )
+else()
+    target_compile_options(bayan PRIVATE
+        -Werror -Wall -Wimplicit-fallthrough -pedantic-errors
+    )
+endif()
+  
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
