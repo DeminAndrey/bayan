@@ -15,13 +15,17 @@ find_package(Boost
   regex
   program_options)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
 add_executable(bayan
   FileScanner.h
   FileScanner.cxx
   main.cxx)
+  
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -Wall -pedantic")
+set_target_properties(${PROJECT_NAME} PROPERTIES
+                CXX_STANDARD 17
+                CXX_STANDARD_REQUIRED ON
+                COMPILE_OPTIONS "-O0;-Wall;"
+)
 
 target_include_directories(bayan
   PRIVATE "${CMAKE_BINARY_DIR}")
@@ -34,16 +38,6 @@ target_link_libraries(bayan
   Boost::filesystem
   Boost::regex
   Boost::program_options)
-  
-if(MSVC)
-    target_compile_options(bayan PRIVATE
-        /W4
-    )
-else()
-    target_compile_options(bayan PRIVATE
-        -Werror -Wall -Wimplicit-fallthrough -pedantic-errors
-    )
-endif()
   
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
 
